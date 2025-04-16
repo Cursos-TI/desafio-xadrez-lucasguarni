@@ -5,53 +5,77 @@
 // Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
 // O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
 
+// Movimentação do Bispo usando loops aninhados
+void moveBishop(int startX, int startY, int steps) {
+    for (int i = 1; i <= steps; i++) { // Loop para o número de passos
+        for (int j = 1; j <= 1; j++) { // Loop interno para simular a diagonal
+            printf("Movimento do Bispo: Casa (%d, %d)\n", startX + i, startY + i);
+        }
+    }
+}
+
+// Função recursiva para movimentação da Torre
+void moveTower(int x, int steps) {
+    if (steps == 0) return;
+    printf("Movimento da Torre: Casa (%d, %d)\n", x + 1, 1);
+    moveTower(x + 1, steps - 1);
+}
+
+// Função recursiva para movimentação da Rainha
+void moveQueen(int x, int steps) {
+    if (steps == 0) return;
+    printf("Movimento da Rainha: Casa (%d, %d)\n", x - 1, 1);
+    moveQueen(x - 1, steps - 1);
+}
+
+/*
+ * OBS: Fiz dessa forma para atender a anunciado, mas existe uma forma mais simples de fazer isso com apenas uma variável de controle e um loop.
+ * Movimentação do Cavalo usando loops continue e break
+ */
+void moveKnight(int startX, int startY) {
+    int topMove = 1;
+    bool finished = false;
+    while (!finished) {
+        if (topMove == 1) {
+            printf("Movimento do Cavalo: Casa (%d, %d)\n", startX, startY + topMove);
+            topMove++;
+            continue;
+        } 
+        
+        printf("Movimento do Cavalo: Casa (%d, %d)\n", startX, startY + topMove);
+        for (int rightMove = 1; rightMove <= 1; rightMove++) {
+            printf("Movimento do Cavalo: Casa (%d, %d)\n", startX + rightMove, startY + topMove);
+        }
+        // finished = true;
+        // Esta comentado a atribuição para true da variavel finished propositalmente para poder utilizar o break conforme pedido no exercicio.
+
+        // Para sair do loop, se não o mesmo ficaria em loop infinito.
+        break;
+
+    }
+}
+
+
 int main() {
 
     printf("Desafio de Xadrez - MateCheck\n");
     printf("Movimentação das Peças\n\n");
 
-    // Nível Novato - Movimentação do Bispo
+    // Movimentação do Bispo
     printf("Movimento do Bispo: 5 Casas para a Diagonal Superior Direita\n");
-    for (int i = 1; i <= 5; i++) {
-        printf("Movimento %d: Casa (%d, %d)\n", i, 1 + i, 1 + i);
-    }
+    moveBishop(1, 1, 5);
 
-    // Nível Novato - Movimentação da Torre
+    // Movimentação da Torre
     printf("\nMovimento da Torre: 5 Casas para a Direita\n");
-    int towerHouseMoveLimit = 5;
-    int towerHouseMoveCount = 1;
-    while (towerHouseMoveLimit >= towerHouseMoveCount) {
-        printf("Movimento %d: Casa (%d, %d)\n", towerHouseMoveCount, 1 + towerHouseMoveCount, 1);
-        towerHouseMoveCount++;
-    }
+    moveTower(1, 5);
 
-    // Nível Novato - Movimentação da Rainha
+    // Movimentação da Rainha
     printf("\nMovimento da Rainha: 8 Casas para a Esquerda\n");
-    int queenHouseMoveLimit = 8;
-    int queenHouseMoveCount = 1;
-    do {
-        printf("Movimento %d: Casa (%d, %d)\n", queenHouseMoveCount, 1 + queenHouseMoveCount, 1);
-        queenHouseMoveCount++;
-    } while (queenHouseMoveLimit >= queenHouseMoveCount);
+    moveQueen(9, 8);
 
-    /*
-     * Nível Intermediário - Movimentação do Cavalo
-     * O cavalo se move em forma de "L", ou seja, duas casas em uma direção e uma casa em outra direção.
-     * Neste exemplo, o cavalo se moverá 2 casas para baixo e 1 casa para a esquerda.
-     * A movimentação do cavalo é feita em duas etapas:
-     * 1. Mover 2 casas para baixo (verticalmente)
-     * 2. Mover 1 casa para a esquerda (horizontalmente)
-     * A posição inicial do cavalo é (1, 1) e a movimentação será feita em relação a essa posição.
-    */
-    printf("\nMovimento do Cavalo: 1 Casa para a Esquerda e 2 Casas para Baixo\n");
-    int knightMoveLeft = 1;
-    for (int i = 1; i <= 2; i++) {
-        while (knightMoveLeft <= 1) {
-            printf("Movimento do Cavalo para esquerda: Casa (%d, %d)\n", knightMoveLeft + 1, i);
-            knightMoveLeft++;
-        }
-        printf("Movimento do Cavalo para baixo: Casa (%d, %d)\n", knightMoveLeft, i + 1);
-    }
+    // Movimentação do Cavalo
+    printf("\nMovimento do Cavalo: 1 vez em L para cima à direita\n");
+    moveKnight(1, 1);
 
     return 0;
 }
