@@ -5,28 +5,33 @@
 // O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
 
 int main() {
-    // Nível Novato - Movimentação das Peças
-    // Sugestão: Declare variáveis constantes para representar o número de casas que cada peça pode se mover.
 
-    // Implementação de Movimentação do Bispo
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação do Bispo em diagonal.
+    printf("Desafio de Xadrez - MateCheck\n");
+    printf("Movimentação das Peças\n\n");
 
-    // Implementação de Movimentação da Torre
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Torre para a direita.
+    // Nível Novato - Movimentação do Bispo
+    printf("Movimento do Bispo: 5 Casas para a Diagonal Superior Direita\n");
+    for (int i = 1; i <= 5; i++) {
+        printf("Movimento %d: Casa (%d, %d)\n", i, 1 + i, 1 + i);
+    }
 
-    // Implementação de Movimentação da Rainha
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Rainha para a esquerda.
+    // Nível Novato - Movimentação da Torre
+    printf("\nMovimento da Torre: 5 Casas para a Direita\n");
+    int towerHouseMoveLimit = 5;
+    int towerHouseMoveCount = 1;
+    while (towerHouseMoveLimit >= towerHouseMoveCount) {
+        printf("Movimento %d: Casa (%d, %d)\n", towerHouseMoveCount, 1 + towerHouseMoveCount, 1);
+        towerHouseMoveCount++;
+    }
 
-    // Nível Aventureiro - Movimentação do Cavalo
-    // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
-    // Um loop pode representar a movimentação horizontal e outro vertical.
-
-    // Nível Mestre - Funções Recursivas e Loops Aninhados
-    // Sugestão: Substitua as movimentações das peças por funções recursivas.
-    // Exemplo: Crie uma função recursiva para o movimento do Bispo.
-
-    // Sugestão: Implemente a movimentação do Cavalo utilizando loops com variáveis múltiplas e condições avançadas.
-    // Inclua o uso de continue e break dentro dos loops.
+    // Nível Novato - Movimentação da Rainha
+    printf("\nMovimento da Rainha: 8 Casas para a Esquerda\n");
+    int queenHouseMoveLimit = 8;
+    int queenHouseMoveCount = 1;
+    do {
+        printf("Movimento %d: Casa (%d, %d)\n", queenHouseMoveCount, 1 + queenHouseMoveCount, 1);
+        queenHouseMoveCount++;
+    } while (queenHouseMoveLimit >= queenHouseMoveCount);
 
     return 0;
 }
